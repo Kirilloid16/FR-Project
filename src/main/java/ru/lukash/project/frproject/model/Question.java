@@ -12,7 +12,7 @@ public class Question {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(name = "name")
     private String name;
@@ -21,20 +21,20 @@ public class Question {
     private Type_of_Question type_of_question;
 
     @Column(name = "poll_id")
-    private Long poll_id;
+    private int poll_id;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id")
     private List<Answers_on_question> answers;
 
     public Question() {
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -54,11 +54,11 @@ public class Question {
         this.type_of_question = type_of_question;
     }
 
-    public Long getPoll_id() {
+    public int getPoll_id() {
         return poll_id;
     }
 
-    public void setPoll_id(Long poll_id) {
+    public void setPoll_id(int poll_id) {
         this.poll_id = poll_id;
     }
 

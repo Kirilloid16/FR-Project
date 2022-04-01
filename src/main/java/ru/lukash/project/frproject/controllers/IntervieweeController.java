@@ -1,8 +1,9 @@
 package ru.lukash.project.frproject.controllers;
 
 import org.springframework.web.bind.annotation.*;
+import ru.lukash.project.frproject.dto.IntervieweeDto;
+import ru.lukash.project.frproject.dto.mapper.IntervieweeMapper;
 import ru.lukash.project.frproject.model.Interviewee;
-import ru.lukash.project.frproject.model.Poll;
 import ru.lukash.project.frproject.service.IntervieweeService.IntervieweeService;
 
 import java.util.List;
@@ -11,17 +12,19 @@ import java.util.List;
 @RequestMapping("/api")
 public class IntervieweeController {
     private final IntervieweeService intervieweeService;
+    private final IntervieweeMapper intervieweeMapper;
 
-    public IntervieweeController(IntervieweeService intervieweeService) {
+    public IntervieweeController(IntervieweeService intervieweeService, IntervieweeMapper intervieweeMapper) {
         this.intervieweeService = intervieweeService;
+        this.intervieweeMapper = intervieweeMapper;
     }
     @GetMapping("/interviewees")
-    public List<Interviewee> pollList (){
-        return intervieweeService.AllInterviewees();
+    public List<IntervieweeDto> pollList (){
+        return intervieweeMapper.intervieweeToDtoList(intervieweeService.AllInterviewees());
     }
     @GetMapping("/interviewee/{id}")
-    public Interviewee interviewee (@PathVariable("id") int id){
-        return intervieweeService.getIntervieweeById(id);
+    public IntervieweeDto interviewee (@PathVariable("id") int id){
+        return intervieweeMapper.intervieweeToDto(intervieweeService.getIntervieweeById(id));
     }
 
 

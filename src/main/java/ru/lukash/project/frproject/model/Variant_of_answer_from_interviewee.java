@@ -7,9 +7,9 @@ import java.util.List;
 public class Variant_of_answer_from_interviewee {
     @Id
     @Column(name = "id", nullable = false)
-    private Long id;
+    private int id;
     @Column(name = "interviewee_id")
-    private Long interviewee_id;
+    private int interviewee_id;
     @ManyToOne
     @JoinColumn(name = "poll_id")
     private Poll poll_id;
@@ -26,11 +26,11 @@ public class Variant_of_answer_from_interviewee {
     public Variant_of_answer_from_interviewee() {
     }
 
-    public Long getInterviewee_id() {
+    public int getInterviewee_id() {
         return interviewee_id;
     }
 
-    public void setInterviewee_id(Long interviewee_id) {
+    public void setInterviewee_id(int interviewee_id) {
         this.interviewee_id = interviewee_id;
     }
 

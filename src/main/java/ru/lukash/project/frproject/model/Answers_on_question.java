@@ -8,10 +8,10 @@ import java.util.List;
 public class Answers_on_question {
     @Id
     @Column(name = "id", nullable = false)
-    private Long id;
+    private int id;
 
     @Column(name = "question_id")
-    private Long question_id;
+    private int question_id;
 
     @Column(name = "description")
     private String description;
@@ -25,11 +25,11 @@ public class Answers_on_question {
     public Answers_on_question() {
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public void setQuestion_id(Long question_id) {
+    public void setQuestion_id(int question_id) {
         this.question_id = question_id;
     }
 

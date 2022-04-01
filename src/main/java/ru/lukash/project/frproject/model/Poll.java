@@ -1,12 +1,18 @@
 package ru.lukash.project.frproject.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+
 import javax.persistence.*;
 import javax.validation.constraints.FutureOrPresent;
 
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 import java.util.List;
 
 @Entity
@@ -14,7 +20,7 @@ import java.util.List;
 public class Poll {
     @Id
     @Column(name = "id", nullable = false)
-    private Long id;
+    private int id;
 
     @Column(name = "name")
     private String name;
@@ -23,14 +29,20 @@ public class Poll {
     private String description;
 
     @Column(name = "start_point", nullable = false)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
     @FutureOrPresent
     private LocalDate start_point;
 
     @Column(name = "end_point")
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
     @FutureOrPresent
     private LocalDate end_point;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name ="poll_id")
     private List<Question> questions;
 
@@ -45,11 +57,11 @@ public class Poll {
 
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

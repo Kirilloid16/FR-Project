@@ -17,7 +17,7 @@ public class Users {
     @Column(name = "enabled")
     @Min(0)
     @Max(1)
-    private Long enabled;
+    private int enabled;
 
     public Users() {
     }
@@ -38,11 +38,11 @@ public class Users {
         this.password = password;
     }
 
-    public Long getEnabled() {
+    public int getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(Long enabled) {
+    public void setEnabled(int enabled) {
         this.enabled = enabled;
     }
 

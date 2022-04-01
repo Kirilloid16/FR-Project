@@ -8,7 +8,7 @@ import java.util.List;
 public class Interviewee {
     @Id
     @Column(name = "id", nullable = false)
-    private Long id;
+    private int id;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "interviewee_name")
@@ -21,11 +21,11 @@ public class Interviewee {
     public Interviewee() {
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
