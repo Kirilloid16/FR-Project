@@ -1,7 +1,7 @@
 # FR-Project
 UPD:
 Добавил DTO, теперь все данный отбражаются корректно( кроме http://localhost:8080/api/interviewee/1)
-Добавил public.sql
+Добавил public.sql,
 В Dto использовал Lombok
 
 
